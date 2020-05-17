@@ -5,8 +5,8 @@ const express = require('express');
 
 // create LINE SDK config from env variables
 const config = {
-  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
-  channelSecret: process.env.CHANNEL_SECRET,
+  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN || 'xxxxx',
+  channelSecret: process.env.CHANNEL_SECRET || 'xxxxx',
 };
 
 // create LINE SDK client
@@ -41,6 +41,12 @@ function handleEvent(event) {
   // use reply API
   return client.replyMessage(event.replyToken, echo);
 }
+
+
+app.get('/', (req, res) => {
+  res.send('Index Page')
+});
+
 
 // listen on port
 const port = process.env.PORT || 3000;
